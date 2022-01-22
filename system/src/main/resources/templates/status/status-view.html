@@ -14,13 +14,19 @@
     <div id="updateForm">
 
         <form action="#" th:action="@{/status/save}" th:object="${form}" method="POST">
-            <input type="text" th:field="*{id}" placeholder="Id" class="form-control disabled">
-            <input type="text" th:field="*{ticket}" placeholder="First Name" class="form-control">
-            <input type="text" th:field="*{status}" placeholder="Last Name" class="form-control">
-            <input type="text" th:field="*{description}" placeholder="Vehicle Name" class="form-control">
-            <input type="text" th:field="*{cost}" placeholder="Registration Number" class="form-control">
-            <input type="submit" value="Update ticket" class="btn btn-primary btn-lg">
-        </form>
+            <input type="text" th:field="*{id}" placeholder="Id" class="form-control" disabled>
+            <select th:field="*{ticket}" class="form-select">
+               <option th:each="i:${tickets}" th:value="${ i.id }" th:text="${ i.id } + ': '+ ${ i.firstName } + ' ' + ${ i.firstName } + ' - ' +  ${ i.registrationNumber }"></option>
+           </select>
+
+           <select th:field="*{status}" class="form-select">
+               <option th:value="fixed">Fixed</option>
+               <option th:value="not-fixed" selected>Not Fixed</option>
+           </select>
+           <input type="text" th:field="*{description}" placeholder="Description" class="form-control">
+           <input type="text" th:field="*{cost}" placeholder="Cost" class="form-control">
+           <input type="submit" value="Save Ticket" class="btn btn-primary btn-lg">
+       </form>
         
     </div>
 
@@ -31,7 +37,11 @@
              <select th:field="*{ticket}" class="form-select">
                 <option th:each="i:${tickets}" th:value="${ i.id }" th:text="${ i.id } + ': '+ ${ i.firstName } + ' ' + ${ i.firstName } + ' - ' +  ${ i.registrationNumber }"></option>
             </select>
-            <input type="text" th:field="*{status}" placeholder="Status" class="form-control">
+
+            <select th:field="*{status}" class="form-select">
+                <option th:value="fixed">Fixed</option>
+                <option th:value="not-fixed">Not Fixed</option>
+            </select>
             <input type="text" th:field="*{description}" placeholder="Description" class="form-control">
             <input type="text" th:field="*{cost}" placeholder="Cost" class="form-control">
             <input type="submit" value="Save Ticket" class="btn btn-primary btn-lg">
@@ -44,7 +54,7 @@
 
     <div class="table-responsive">
         <table class="table table-hover">
-            <thead>
+            <thead class="thead-dark">
                 <tr>
                     <td>ID</td>
                     <td>Ticket</td>
@@ -57,7 +67,7 @@
             <tbody>
                 <tr th:each="data:${ modelData }" >
                     <td th:text="${ data.id }"></td>
-                    <td th:text="${ data.ticket }"></td>
+                    <td th:text="${ data.ticket.id } + ': '+ ${ data.ticket.firstName } + ' ' + ${ data.ticket.firstName } + ' - ' +  ${ data.ticket.registrationNumber }"></td>
                     <td th:text="${ data.status }"></td>
                     <td th:text="${ data.description }"></td>
                     <td th:text="${ data.cost }"></td>

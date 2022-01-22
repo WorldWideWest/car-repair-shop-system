@@ -36,8 +36,6 @@ public class StatusController {
         List<Ticket> tickets = ticketService.findAll();
         model.addAttribute("tickets", tickets);
 
-        System.out.println(tickets);
-
         return "status/status-view";
     }
 
@@ -55,7 +53,10 @@ public class StatusController {
         List<Status> status = statusService.findAll();
         model.addAttribute("modelData", status);
 
-        return "ticket/status-view";
+        List<Ticket> tickets = ticketService.findAll();
+        model.addAttribute("tickets", tickets);
+
+        return "status/status-view";
     }
 
     @GetMapping("/delete")

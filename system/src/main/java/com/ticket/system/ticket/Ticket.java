@@ -90,8 +90,9 @@ public class Ticket {
 
     @Override
     public String toString() {
-        return "Ticket [firstName=" + firstName + ", id=" + id + ", lastName=" + lastName + ", repairType=" + repairType
-                + ", vehicleType=" + vehicleName + "]";
+        return "Ticket [firstName=" + firstName + ", id=" + id + ", lastName=" + lastName + ", registrationNumber="
+                + registrationNumber + ", repairType=" + repairType + ", vehicleName=" + vehicleName + "]";
     }
+
 
 }
