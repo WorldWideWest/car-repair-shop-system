@@ -1,0 +1,28 @@
+DROP DATABASE IF EXISTS car_repair;
+CREATE DATABASE IF NOT EXISTS car_repair;
+
+USE car_repair;
+
+DROP TABLE IF EXISTS Ticket;
+
+CREATE TABLE IF NOT EXISTS Ticket(
+	id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    first_name VARCHAR(200) NOT NULL,
+    last_name VARCHAR(200) NOT NULL,
+    vehicle_name VARCHAR(500) NOT NULL,
+    registration_number VARCHAR(50) NOT NULL,
+    repair_type VARCHAR(1000) NOT NULL
+)ENGINE=INNODB;
+
+
+DROP TABLE IF EXISTS `Status`;
+
+CREATE TABLE IF NOT EXISTS `Status`(
+	id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    ticket INT,
+    `status` VARCHAR(20),
+    `description` VARCHAR(2000),
+    cost DOUBLE,
+    FOREIGN KEY(ticket) REFERENCES Ticket(id)
+)ENGINE=INNODB;
+
