@@ -30,9 +30,18 @@ public class HomeController {
     @RequestMapping("/search")
     public String searchView(@RequestParam("ticketId") int id, Model model ){
         Ticket ticket = ticketService.findById(id);
-        model.addAttribute("data", ticket);
+        if(ticket != null){
+            model.addAttribute("data", ticket);
+        }else{
+            throw new RuntimeException("There is no registered ticket with the id: " + id);
+        }
 
         return "home/home-view";
+    }
+
+    @GetMapping("/access-denied")
+    public String accessDeniedView(){
+        return "home/access-denied";
     }
 
 }
