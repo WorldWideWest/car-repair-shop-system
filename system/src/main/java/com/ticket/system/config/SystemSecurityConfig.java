@@ -2,6 +2,8 @@ package com.ticket.system.config;
 
 import javax.sql.DataSource;
 
+import com.ticket.system.user.CustomUserDetailsService;
+
 // import com.ticket.system.auth.CustomUserDetailsService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,9 +14,9 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.User;
+// import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.User.UserBuilder;
+// import org.springframework.security.core.userdetails.User.UserBuilder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Configuration @EnableWebSecurity
@@ -23,38 +25,29 @@ public class SystemSecurityConfig extends WebSecurityConfigurerAdapter{
     @Autowired
     private DataSource dataSource;
 
-    // @Bean
-    // public UserDetailsService userDetailsService(){
-    //     return new CustomUserDetailsService();
-    // }
+    @Bean
+    public UserDetailsService userDetailsService(){
+        return new CustomUserDetailsService();
+    }
 
-    // @Bean
-    // public BCryptPasswordEncoder passwordEncoder(){
-    //     return new BCryptPasswordEncoder();
-    // }
+    @Bean
+    public BCryptPasswordEncoder passwordEncoder(){
+        return new BCryptPasswordEncoder();
+    }
 
-    // @Bean
-    // public DaoAuthenticationProvider authenticationProvider(){
-    //     DaoAuthenticationProvider authenticationProvider = 
-    //         new DaoAuthenticationProvider();
+    @Bean
+    public DaoAuthenticationProvider authenticationProvider(){
+        DaoAuthenticationProvider authenticationProvider = 
+            new DaoAuthenticationProvider();
 
-    //     authenticationProvider.setUserDetailsService(userDetailsService());
-    //     authenticationProvider.setPasswordEncoder(passwordEncoder());
-    //     return authenticationProvider;
-    // }
+        authenticationProvider.setUserDetailsService(userDetailsService());
+        authenticationProvider.setPasswordEncoder(passwordEncoder());
+        return authenticationProvider;
+    }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        // auth.authenticationProvider(authenticationProvider());
-        // auth.jdbcAuthentication().dataSource(dataSource);
-
-        UserBuilder users = User.withDefaultPasswordEncoder();
-
-        auth.inMemoryAuthentication()
-            .withUser(users.username("dzenan.dzafic").password("eminem662").roles("MANAGER", "EMPLOYEE"));
-
-        // JPA -authentication
-
+        auth.authenticationProvider(authenticationProvider());
     }
 
     @Override
@@ -62,8 +55,9 @@ public class SystemSecurityConfig extends WebSecurityConfigurerAdapter{
 
         http.authorizeRequests()
                 .antMatchers("/").permitAll()
-                .antMatchers("/status/**").hasRole("EMPLOYEE")
-                .antMatchers("/ticket/**").hasRole("EMPLOYEE")
+                .antMatchers("/status/**").authenticated()
+                .antMatchers("/ticket/**").authenticated()
+                .antMatchers("/register/**").authenticated()
             .and()
                 .formLogin()
                 .permitAll()

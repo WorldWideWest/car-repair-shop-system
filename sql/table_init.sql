@@ -32,14 +32,16 @@ USE car_repair;
 DROP TABLE IF EXISTS users;
 CREATE TABLE IF NOT EXISTS users(
 	id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
-	username VARCHAR(200) NOT NULL,
+    first_name VARCHAR(200) NOT NULL,
+    last_name VARCHAR(200) NOT NULL,
+	username VARCHAR(200) NOT NULL UNIQUE,
     `password` VARCHAR(64) NOT NULL
 )ENGINE=INNODB;
 
-/*
+
 INSERT INTO users VALUES
-('dzenan.dzafic', '{bcrypt}$2a$10$g6FKzXOcbdkR99/QXki9EOdYcfkX/HhyonsfNYAsHjXGUdTXTLGQa', 1);
-*/
+(1, 'Oliver', 'Twist', 'oli.t', '$2a$10$eyl1t1zgeiNL3VR5U87d/uK5ZRl4wpPwcfskaFm5GZ8TpUVB0V9hG');
+
 
 
 /*DROP TABLE IF EXISTS authorities;
