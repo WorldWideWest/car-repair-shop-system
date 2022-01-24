@@ -42,7 +42,7 @@ public class StatusController {
     @PostMapping("/save")
     public String postTicketView(@ModelAttribute("form") Status status){
         statusService.save(status);
-        return "status/status-view";
+        return "redirect:/status/list";
     }
 
     @GetMapping("/update")

@@ -55,6 +55,11 @@
                         <td>ID</td>
                         <td>Vehicle Name</td>
                         <td>Repair Type</td>
+                        <span th:if="${status}">
+                            <td>Status</td>
+                            <td>Description</td>
+                            <td>Cost</td>
+                        </span>
                     </tr>
                 </thead>
                 <tbody>
@@ -62,6 +67,11 @@
                         <td th:text="${ data.id }"></td>
                         <td th:text="${ data.vehicleName }"></td>
                         <td th:text="${ data.repairType }"></td>
+                        <span th:if="${status}">
+                            <td th:text="${ status.status }"></td>
+                            <td th:text="${ status.description }"></td>
+                            <td th:text="${ status.cost }"></td>
+                        </span>
                     </tr>
                 </tbody>
             </table>

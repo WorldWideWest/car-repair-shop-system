@@ -34,7 +34,7 @@ public class TicketController {
     @PostMapping("/save")
     public String postTicketView(@ModelAttribute("form") Ticket ticket){
         ticketService.save(ticket);
-        return "ticket/ticket-view";
+        return "redirect:/ticket/list";
     }
 
     @GetMapping("/update")

@@ -44,7 +44,7 @@
     <div id="updateForm">
 
         <form action="#" th:action="@{/ticket/save}" th:object="${form}" method="POST">
-            <input type="text" th:field="*{id}" placeholder="Id" class="form-control" disabled>
+            <input type="text" th:field="*{id}" placeholder="Id" class="form-control">
             <input type="text" th:field="*{firstName}" placeholder="First Name" class="form-control">
             <input type="text" th:field="*{lastName}" placeholder="Last Name" class="form-control">
             <input type="text" th:field="*{vehicleName}" placeholder="Vehicle Name" class="form-control">

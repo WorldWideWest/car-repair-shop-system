@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS Ticket(
 DROP TABLE IF EXISTS `Status`;
 CREATE TABLE IF NOT EXISTS `Status`(
 	id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
-    ticket INT,
+    ticket INT NOT NULL,
     `status` VARCHAR(20),
     `description` VARCHAR(2000),
     cost DOUBLE,

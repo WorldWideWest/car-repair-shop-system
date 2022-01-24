@@ -3,6 +3,8 @@ package com.ticket.system.status;
 import java.util.List;
 import java.util.Optional;
 
+import com.ticket.system.ticket.Ticket;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,6 +30,11 @@ public class StatusServiceImpl implements StatusService{
             throw new RuntimeException("There is no status ticket with the id: " + id);
         }
         return status.get();
+    }
+
+    @Override
+    public Status findByTicket(Ticket ticket){
+        return statusRepository.findByTicket(ticket);
     }
 
     @Override

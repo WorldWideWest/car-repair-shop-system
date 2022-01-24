@@ -1,5 +1,6 @@
 package com.ticket.system.home;
 
+import com.ticket.system.status.Status;
 import com.ticket.system.status.StatusService;
 import com.ticket.system.ticket.Ticket;
 import com.ticket.system.ticket.TicketService;
@@ -32,6 +33,10 @@ public class HomeController {
         Ticket ticket = ticketService.findById(id);
         if(ticket != null){
             model.addAttribute("data", ticket);
+
+            Status status = statusService.findByTicket(ticket);
+            model.addAttribute("status", status);
+
         }else{
             throw new RuntimeException("There is no registered ticket with the id: " + id);
         }

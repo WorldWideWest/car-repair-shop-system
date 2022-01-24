@@ -40,7 +40,7 @@
     <div id="updateForm">
 
         <form action="#" th:action="@{/status/save}" th:object="${form}" method="POST">
-            <input type="text" th:field="*{id}" placeholder="Id" class="form-control" disabled>
+            <input type="text" th:field="*{id}" placeholder="Id" class="form-control">
             <select th:field="*{ticket}" class="form-select">
                <option th:each="i:${tickets}" th:value="${ i.id }" th:text="${ i.id } + ': '+ ${ i.firstName } + ' ' + ${ i.firstName } + ' - ' +  ${ i.registrationNumber }"></option>
            </select>

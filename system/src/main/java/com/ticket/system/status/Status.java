@@ -19,7 +19,7 @@ public class Status {
     private int id;
 
     @OneToOne
-    @JoinColumn(name = "id", referencedColumnName = "id")
+    @JoinColumn(name = "ticket", referencedColumnName = "id")
     private Ticket ticket;
 
     @JoinColumn(name = "status")
