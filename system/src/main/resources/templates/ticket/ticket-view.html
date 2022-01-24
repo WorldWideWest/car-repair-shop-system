@@ -4,17 +4,47 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link th:href="@{/css/product.css}"  rel="stylesheet" type="text/css" />
+    <link th:href="@{/css/index.css}"  rel="stylesheet" type="text/css" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <title>Tickets</title>
 </head>
 <body>
-    <h1>This is the tickets view</h1>
+
+
+
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" th:href="@{/}">Car Repair Shop</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav mx-auto py-1 px-1">
+            <li class="nav-item">
+              <a class="nav-link" th:href="@{/ticket/list}">Tickets</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/status/list}">Status</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/}">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" sec:authorize="isFullyAuthenticated()" th:href="@{/logout}">Logout</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+
+
+
+    <h1 style="text-align: center;">Ticket manager</h1>
 
     <div id="updateForm">
 
         <form action="#" th:action="@{/ticket/save}" th:object="${form}" method="POST">
-            <input type="text" th:field="*{id}" placeholder="Id" class="form-control disabled">
+            <input type="text" th:field="*{id}" placeholder="Id" class="form-control" disabled>
             <input type="text" th:field="*{firstName}" placeholder="First Name" class="form-control">
             <input type="text" th:field="*{lastName}" placeholder="Last Name" class="form-control">
             <input type="text" th:field="*{vehicleName}" placeholder="Vehicle Name" class="form-control">

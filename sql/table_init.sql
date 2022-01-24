@@ -31,16 +31,18 @@ USE car_repair;
 
 DROP TABLE IF EXISTS users;
 CREATE TABLE IF NOT EXISTS users(
-	username VARCHAR(50) NOT NULL PRIMARY KEY,
-    `password` VARCHAR(50) NOT NULL,
-    enabled TINYINT(1) NOT NULL
+	id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
+	username VARCHAR(200) NOT NULL,
+    `password` VARCHAR(64) NOT NULL
 )ENGINE=INNODB;
 
+/*
 INSERT INTO users VALUES
-('dzenan.dzafic', '{noop}eminem662', 1);
+('dzenan.dzafic', '{bcrypt}$2a$10$g6FKzXOcbdkR99/QXki9EOdYcfkX/HhyonsfNYAsHjXGUdTXTLGQa', 1);
+*/
 
 
-DROP TABLE IF EXISTS authorities;
+/*DROP TABLE IF EXISTS authorities;
 CREATE TABLE IF NOT EXISTS authorities(
 	username VARCHAR(50) NOT NULL,
     authority VARCHAR(50) NOT NULL,
@@ -51,6 +53,6 @@ CREATE TABLE IF NOT EXISTS authorities(
 
 INSERT INTO authorities VALUES
 ('dzenan.dzafic', 'ROLE_EMPLOYEE');
-
+*/
 
 
