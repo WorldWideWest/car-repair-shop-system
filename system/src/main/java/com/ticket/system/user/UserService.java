@@ -10,4 +10,6 @@ public interface UserService {
 
     public User findById(int id);
 
+    public void delete(User user);
+
 }

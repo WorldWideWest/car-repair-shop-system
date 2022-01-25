@@ -29,10 +29,11 @@ public class User {
     @Column(name = "last_name")
     private String lastName;
 
-    @Column(name = "username")
+    
+    @Column(name = "username", nullable = false, length = 200)
     private String username;
 
-    @Column(name = "password")
+    @Column(name = "password", nullable = false, length = 64)
     private String password;
 
     @ManyToMany(fetch = FetchType.EAGER)

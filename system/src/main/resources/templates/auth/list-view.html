@@ -25,7 +25,7 @@
                         <td>Last Name</td>
                         <td>Username</td>
                         <td>Roles</td>
-                        <td>Update user</td>
+                        <td colspan="2" style="text-align: center;">Actions</td>
                     </tr>
                 </thead>
                 <tbody>
@@ -39,6 +39,9 @@
                         </td>
                         <td>
                             <a th:href="@{/update(userId=${user.id})}" class="btn btn-secondary btn-sm">Edit user</a>
+                        </td>
+                        <td>
+                            <a th:href="@{/delete(userId=${user.id})}" class="btn btn-danger btn-sm">Delete user</a>
                         </td>
                     </tr>
                 </tbody>

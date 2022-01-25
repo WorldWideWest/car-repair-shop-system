@@ -22,7 +22,7 @@ public class Status {
     @JoinColumn(name = "ticket", referencedColumnName = "id")
     private Ticket ticket;
 
-    @JoinColumn(name = "status")
+    @Column(name = "status")
     private String status;
 
     @Column(name = "description")

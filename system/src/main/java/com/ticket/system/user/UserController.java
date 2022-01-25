@@ -31,6 +31,17 @@ public class UserController {
 
     }
 
+    @GetMapping("/register")
+    public String registerView(Model model){
+        
+        User user = new User();
+        model.addAttribute("form", user);
+        List<Role> roles = roleService.findAll();
+        model.addAttribute("roles", roles);
+        return "auth/register-view";
+
+    }
+
     @GetMapping("/update")
     public String userUpdateView(@ModelAttribute("userId") int id, Model model){
         
@@ -43,16 +54,15 @@ public class UserController {
 
     }
 
-    @GetMapping("/register")
-    public String registerView(Model model){
+    @GetMapping("/delete")
+    public String userDeleteView(@ModelAttribute("userId") int id){
         
-        User user = new User();
-        model.addAttribute("form", user);
-        List<Role> roles = roleService.findAll();
-        model.addAttribute("roles", roles);
-        return "auth/register-view";
+        User user = userService.findById(id);
+        userService.delete(user);
+        return "redirect:/list";
 
     }
+
 
     
 

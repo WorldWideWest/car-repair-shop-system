@@ -47,4 +47,8 @@ public class UserServiceImpl implements UserService {
         return user.get();
     }
 
+    public void delete(User user){
+        userRepository.delete(user);
+    }
+
 }
