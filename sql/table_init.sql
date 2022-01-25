@@ -42,6 +42,24 @@ CREATE TABLE IF NOT EXISTS users(
 INSERT INTO users VALUES
 (1, 'Oliver', 'Twist', 'oli.t', '$2a$10$eyl1t1zgeiNL3VR5U87d/uK5ZRl4wpPwcfskaFm5GZ8TpUVB0V9hG');
 
+DROP TABLE IF EXISTS roles;
+CREATE TABLE IF NOT EXISTS roles(
+	id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
+    `name` VARCHAR(50) NOT NULL UNIQUE
+);
+INSERT INTO roles VALUES
+(1, "EMPLOYEE"),
+(2, "ADMIN");
+
+
+
+DROP TABLE IF EXISTS users_roles;
+CREATE TABLE IF NOT EXISTS users_roles(
+	user_id INT NOT NULL,
+    role_id INT NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users(id),
+    FOREIGN KEY (role_id) REFERENCES roles(id)
+);
 
 
 /*DROP TABLE IF EXISTS authorities;
