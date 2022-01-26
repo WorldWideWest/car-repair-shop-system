@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
 
 @Entity
@@ -14,19 +15,24 @@ public class Ticket {
     
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY) @Column(name = "id")
     private int id;
-    
+
+    @NotBlank(message = "The First Name field can't be blank")
     @Column(name = "first_name")
     private String firstName;
 
+    @NotBlank(message = "The Last Name field can't be blank")
     @Column(name = "last_name")
     private String lastName;
 
+    @NotBlank(message = "The Vehicle Name field can't be blank")
     @Column(name = "vehicle_name")
     private String vehicleName;
 
+    @NotBlank(message = "The Registration Number field can't be blank")
     @Column(name = "registration_number")
     private String registrationNumber;
 
+    @NotBlank(message = "The Repair Type field can't be blank")
     @Column(name = "repair_type")
     private String repairType;
 

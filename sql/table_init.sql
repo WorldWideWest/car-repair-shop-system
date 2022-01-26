@@ -57,8 +57,8 @@ DROP TABLE IF EXISTS users_roles;
 CREATE TABLE IF NOT EXISTS users_roles(
 	user_id INT NOT NULL,
     role_id INT NOT NULL,
-    FOREIGN KEY (user_id) REFERENCES users(id),
-    FOREIGN KEY (role_id) REFERENCES roles(id)
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY (role_id) REFERENCES roles(id) ON DELETE CASCADE
 );
 
 

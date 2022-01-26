@@ -2,8 +2,12 @@ package com.ticket.system.ticket;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,6 +20,7 @@ public class TicketController {
     
     private TicketService ticketService;
 
+    @Autowired
     public TicketController(TicketService ticketService){
         this.ticketService = ticketService;
     }
@@ -32,7 +37,15 @@ public class TicketController {
     }
 
     @PostMapping("/save")
-    public String postTicketView(@ModelAttribute("form") Ticket ticket){
+    public String postTicketView(@Valid @ModelAttribute("form") Ticket ticket, BindingResult bindingResult, Model model){
+        
+        if(bindingResult.hasErrors()){
+            
+            List<Ticket> tickets = ticketService.findAll();
+            model.addAttribute("modelData", tickets);
+            return "ticket/ticket-view";
+            
+        }
         ticketService.save(ticket);
         return "redirect:/ticket/list";
     }
