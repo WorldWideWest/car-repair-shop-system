@@ -20,7 +20,7 @@ public class Status {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY) @Column(name = "id")
     private int id;
 
-    @OneToOne //@NotBlank(message = "The Ticket field can't be blank")
+    @OneToOne
     @JoinColumn(name = "ticket", referencedColumnName = "id")
     private Ticket ticket;
 
@@ -32,7 +32,6 @@ public class Status {
     @Column(name = "description")
     private String description;
 
-    // @NotBlank(message = "The Cost field can't be blank")
     @Min(value = 1, message = "The cost can't be a negative number")
     @Column(name = "cost")
     private Double cost;

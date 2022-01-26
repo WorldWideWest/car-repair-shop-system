@@ -2,24 +2,30 @@ package com.ticket.system.user;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import com.ticket.system.roles.Role;
 import com.ticket.system.roles.RoleService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class UserController {
-    
-    @Autowired
-    public UserService userService;
+
+    private UserService userService;
+    private RoleService roleService;
 
     @Autowired
-    public RoleService roleService;
+    public UserController(UserService userService, RoleService roleService){
+        this.userService = userService;
+        this.roleService = roleService;
+    }
 
 
     @GetMapping("/list")
@@ -41,9 +47,23 @@ public class UserController {
         return "auth/register-view";
 
     }
+    
+    @PostMapping("/save")
+    public String saveUserView(@Valid @ModelAttribute("form") User user, BindingResult bindingResult, Model model){
+
+        if(bindingResult.hasErrors()){
+            
+            List<Role> roles = roleService.findAll();
+            model.addAttribute("roles", roles);
+            return "auth/register-view";
+
+        }
+        userService.registerUser(user);
+        return "redirect:/list";
+    }
 
     @GetMapping("/update")
-    public String userUpdateView(@ModelAttribute("userId") int id, Model model){
+    public String getUserUpdateView(@ModelAttribute("userId") int id, Model model){
         
         User user = userService.findById(id);
         model.addAttribute("form", user);
@@ -62,18 +82,5 @@ public class UserController {
         return "redirect:/list";
 
     }
-
-
-    
-
-    @PostMapping("/register-process")
-    public String registerProcessView(User user, Model model){
-        
-        userService.registerUser(user);
-        return "auth/registration-success";
-
-    }
-
-
 
 }

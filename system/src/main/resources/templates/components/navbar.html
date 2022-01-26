@@ -27,6 +27,13 @@
             <a class="nav-link" sec:authorize="isAnonymous()" th:href="@{/login}">Login</a>
         </li>
       </ul>
+      <span sec:authorize="isAuthenticated()">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" th:text="${#authentication.name}"></a>
+          </li>
+        </ul>
+      </span>
     </div>
   </div>
 </nav>

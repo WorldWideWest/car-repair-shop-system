@@ -13,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
 import com.ticket.system.roles.Role;
 
@@ -23,16 +24,19 @@ public class User {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY) @Column(name = "id")
     private int id;
 
+    @NotBlank(message = "The First Name field can't be blank")
     @Column(name = "first_name")
     private String firstName;
 
+    @NotBlank(message = "The Last Name field can't be blank")
     @Column(name = "last_name")
     private String lastName;
 
-    
-    @Column(name = "username", nullable = false, length = 200)
+    @NotBlank(message = "The Username field can't be blank")
+    @Column(name = "username", nullable = false, length = 200, unique = true)
     private String username;
-
+    
+    @NotBlank(message = "The Password field can't be blank")
     @Column(name = "password", nullable = false, length = 64)
     private String password;
 

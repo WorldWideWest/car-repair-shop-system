@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" 
     xmlns:th="http://www.thymeleaf.org"
-    xmlns:form="http://www.springframework.org/tags/form">
+    xmlns:form="http://www.springframework.org/tags/form"
+    xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,6 +13,8 @@
 </head>
 <body>
     <nav th:replace="components/navbar"></nav>
+
+    
 
     <h1 style="text-align: center; padding: 30px;">Welcome to Car Repair Shop</h1>
     <form action="#" th:action="@{/search}">
