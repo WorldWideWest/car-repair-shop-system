@@ -38,10 +38,10 @@
                             <span th:each="role : ${user.roles}" th:text="${role.name} + ' '"></span>
                         </td>
                         <td>
-                            <a th:href="@{/update(userId=${user.id})}" class="btn btn-secondary btn-sm">Edit user</a>
+                            <a th:href="@{/user/update(userId=${user.id})}" class="btn btn-secondary btn-sm">Edit user</a>
                         </td>
                         <td>
-                            <a th:href="@{/delete(userId=${user.id})}" class="btn btn-danger btn-sm">Delete user</a>
+                            <a th:href="@{/user/delete(userId=${user.id})}" class="btn btn-danger btn-sm">Delete user</a>
                         </td>
                     </tr>
                 </tbody>

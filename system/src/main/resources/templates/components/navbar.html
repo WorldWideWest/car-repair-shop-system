@@ -6,16 +6,16 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mx-auto py-1 px-1">
         <li class="nav-item">
-          <a class="nav-link" sec:authorize="isAuthenticated()" th:href="@{/ticket/list}">Tickets</a>
+          <a class="nav-link" sec:authorize="hasAuthority('EMPLOYEE')" th:href="@{/ticket/list}">Tickets</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" sec:authorize="isAuthenticated()" th:href="@{/status/list}">Status</a>
+            <a class="nav-link" sec:authorize="hasAuthority('EMPLOYEE')" th:href="@{/status/list}">Status</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" sec:authorize="isAuthenticated()" th:href="@{/register}">Register user</a>
+            <a class="nav-link" sec:authorize="hasAuthority('ADMIN')" th:href="@{/user/register}">Register user</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" sec:authorize="isAuthenticated()" th:href="@{/list}">Users list</a>
+            <a class="nav-link" sec:authorize="hasAuthority('ADMIN')" th:href="@{/user/list}">Users list</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" th:href="@{/}">Home</a>

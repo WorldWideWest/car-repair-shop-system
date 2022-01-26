@@ -20,7 +20,7 @@
 
     <h1 style="text-align: center; padding: 30px;">Welcome to User Manager</h1>
 
-    <form th:action="@{/save}" th:object="${form}" method="POST">
+    <form th:action="@{/user/save}" th:object="${form}" method="POST">
         <div class="form-group" id="id">
             <label for="idField">Id</label>
             <input type="text" th:field="*{id}" class="form-control" placeholder="Enter First Name" id="idField" readonly>

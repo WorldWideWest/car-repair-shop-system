@@ -14,8 +14,10 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+@RequestMapping("/user")
 public class UserController {
 
     private UserService userService;
@@ -59,7 +61,7 @@ public class UserController {
 
         }
         userService.registerUser(user);
-        return "redirect:/list";
+        return "redirect:/user/list";
     }
 
     @GetMapping("/update")

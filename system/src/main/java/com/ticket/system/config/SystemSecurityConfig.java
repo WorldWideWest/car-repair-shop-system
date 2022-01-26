@@ -51,14 +51,13 @@ public class SystemSecurityConfig extends WebSecurityConfigurerAdapter{
 
         http.authorizeRequests()
                 .antMatchers("/").permitAll()
-                .antMatchers("/status/**").authenticated()
-                .antMatchers("/ticket/**").authenticated()
-                .antMatchers("/register/**").authenticated()
+                .antMatchers("/status/**").hasAuthority("EMPLOYEE")
+                .antMatchers("/ticket/**").hasAuthority("EMPLOYEE")
+                .antMatchers("/user/**").hasAuthority("ADMIN")
             .and()
                 .formLogin().permitAll()
             .and()
-                .logout()
-                .permitAll()
+                .logout().permitAll()
             .and()
                 .exceptionHandling().accessDeniedPage("/access-denied");
 
