@@ -2,11 +2,14 @@ package com.ticket.system.status;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import com.ticket.system.ticket.TicketService;
 import com.ticket.system.ticket.Ticket;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -40,9 +43,19 @@ public class StatusController {
     }
 
     @PostMapping("/save")
-    public String postTicketView(@ModelAttribute("form") Status status){
-        statusService.save(status);
-        return "redirect:/status/list";
+    public String postTicketView(@Valid @ModelAttribute("form") Status status, BindingResult bindingResult, Model model){
+        
+        if(bindingResult.hasErrors()){
+            List<Status> statusData = statusService.findAll();
+            model.addAttribute("modelData", statusData);
+            
+            List<Ticket> tickets = ticketService.findAll();
+            model.addAttribute("tickets", tickets);
+            return "status/status-view";
+
+        }
+            statusService.save(status);
+            return "redirect:/status/list";
     }
 
     @GetMapping("/update")

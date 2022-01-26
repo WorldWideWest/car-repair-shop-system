@@ -6,7 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link th:href="@{/css/index.css}"  rel="stylesheet" type="text/css" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <title>Tickets</title>
+    <title>Status</title>
+    
+    <style>
+        .form-text{ color: #dc3545; }
+    </style>
 </head>
 <body>
     <nav th:replace="components/navbar"></nav>
@@ -16,17 +20,39 @@
     <div id="updateForm">
 
         <form action="#" th:action="@{/status/save}" th:object="${form}" method="POST">
-            <input type="text" th:field="*{id}" placeholder="Id" class="form-control">
-            <select th:field="*{ticket}" class="form-select">
-               <option th:each="i:${tickets}" th:value="${ i.id }" th:text="${ i.id } + ': '+ ${ i.firstName } + ' ' + ${ i.firstName } + ' - ' +  ${ i.registrationNumber }"></option>
-           </select>
+            <input type="text" th:field="*{id}" placeholder="Id" class="form-control" readonly>
+            <div class="mb-3">
+                <label for="ticket" class="form-label">Ticket</label>
+                
+                <select th:field="*{ticket}" class="form-select" id="ticket">
+                    <option th:each="i:${tickets}" th:value="${ i.id }" th:text="${ i.id } + ': '+ ${ i.firstName } + ' ' + ${ i.firstName } + ' - ' +  ${ i.registrationNumber }"></option>
+                </select>
 
-           <select th:field="*{status}" class="form-select">
-               <option th:value="fixed">Fixed</option>
-               <option th:value="not-fixed" selected>Not Fixed</option>
-           </select>
-           <input type="text" th:field="*{description}" placeholder="Description" class="form-control">
-           <input type="text" th:field="*{cost}" placeholder="Cost" class="form-control">
+                <div class="form-text" th:if="${#fields.hasErrors('ticket')}" th:errors="*{ticket}"></div>
+            </div>
+
+            <div class="mb-3">
+                <label for="status" class="form-label">Status</label>
+                
+                <select th:field="*{status}" class="form-select" id="status">
+                    <option th:value="Fixed">Fixed</option>
+                    <option th:value="Not-fixed">Not Fixed</option>
+                </select>
+
+                <div class="form-text" th:if="${#fields.hasErrors('status')}" th:errors="*{status}"></div>
+            </div>
+
+            <div class="mb-3">
+                <label for="description" class="form-label">Description</label>
+                <input type="text" th:field="*{description}" placeholder="Description" class="form-control" id="description">
+                <div class="form-text" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></div>
+            </div>
+
+            <div class="mb-3">
+                <label for="cost" class="form-label">Cost</label>
+                <input type="text" th:field="*{cost}" placeholder="Cost" class="form-control" id="cost">
+                <div class="form-text" th:if="${#fields.hasErrors('cost')}" th:errors="*{cost}"></div>
+            </div>
            <input type="submit" value="Save Ticket" class="btn btn-primary btn-lg">
        </form>
         
@@ -36,16 +62,39 @@
         
         <form action="#" th:action="@{/status/save}" th:object="${form}" method="POST">
             
-             <select th:field="*{ticket}" class="form-select">
-                <option th:each="i:${tickets}" th:value="${ i.id }" th:text="${ i.id } + ': '+ ${ i.firstName } + ' ' + ${ i.firstName } + ' - ' +  ${ i.registrationNumber }"></option>
-            </select>
+            <div class="mb-3">
+                <label for="ticket" class="form-label">Ticket</label>
+                
+                <select th:field="*{ticket}" class="form-select" id="ticket">
+                    <option th:each="i:${tickets}" th:value="${ i.id }" th:text="${ i.id } + ': '+ ${ i.firstName } + ' ' + ${ i.firstName } + ' - ' +  ${ i.registrationNumber }"></option>
+                </select>
 
-            <select th:field="*{status}" class="form-select">
-                <option th:value="fixed">Fixed</option>
-                <option th:value="not-fixed">Not Fixed</option>
-            </select>
-            <input type="text" th:field="*{description}" placeholder="Description" class="form-control">
-            <input type="text" th:field="*{cost}" placeholder="Cost" class="form-control">
+                <div class="form-text" th:if="${#fields.hasErrors('ticket')}" th:errors="*{ticket}"></div>
+            </div>
+
+            <div class="mb-3">
+                <label for="status" class="form-label">Status</label>
+                
+                <select th:field="*{status}" class="form-select" id="status">
+                    <option th:value="Fixed">Fixed</option>
+                    <option th:value="Not-fixed">Not Fixed</option>
+                </select>
+
+                <div class="form-text" th:if="${#fields.hasErrors('status')}" th:errors="*{status}"></div>
+            </div>
+
+            <div class="mb-3">
+                <label for="description" class="form-label">Description</label>
+                <input type="text" th:field="*{description}" placeholder="Description" class="form-control" id="description">
+                <div class="form-text" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></div>
+            </div>
+
+            <div class="mb-3">
+                <label for="cost" class="form-label">Cost</label>
+                <input type="text" th:field="*{cost}" placeholder="Cost" class="form-control" id="cost">
+                <div class="form-text" th:if="${#fields.hasErrors('cost')}" th:errors="*{cost}"></div>
+            </div>
+
             <input type="submit" value="Save Ticket" class="btn btn-primary btn-lg">
         </form>
 

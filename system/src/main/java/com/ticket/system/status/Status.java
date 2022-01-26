@@ -8,6 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
 
 import com.ticket.system.ticket.Ticket;
 
@@ -18,16 +20,20 @@ public class Status {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY) @Column(name = "id")
     private int id;
 
-    @OneToOne
+    @OneToOne //@NotBlank(message = "The Ticket field can't be blank")
     @JoinColumn(name = "ticket", referencedColumnName = "id")
     private Ticket ticket;
 
+    @NotBlank(message = "The Status field can't be blank")
     @Column(name = "status")
     private String status;
 
+    @NotBlank(message = "The Description field can't be blank")
     @Column(name = "description")
     private String description;
 
+    // @NotBlank(message = "The Cost field can't be blank")
+    @Min(value = 1, message = "The cost can't be a negative number")
     @Column(name = "cost")
     private Double cost;
 
