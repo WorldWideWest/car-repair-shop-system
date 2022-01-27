@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS `Status`(
     `status` VARCHAR(20),
     `description` VARCHAR(2000),
     cost DOUBLE,
-    FOREIGN KEY(ticket) REFERENCES Ticket(id)
+    FOREIGN KEY(ticket) REFERENCES Ticket(id) ON DELETE CASCADE
 )ENGINE=INNODB;
 
 
@@ -51,8 +51,6 @@ INSERT INTO roles VALUES
 (1, "EMPLOYEE"),
 (2, "ADMIN");
 
-
-
 DROP TABLE IF EXISTS users_roles;
 CREATE TABLE IF NOT EXISTS users_roles(
 	user_id INT NOT NULL,
@@ -62,17 +60,6 @@ CREATE TABLE IF NOT EXISTS users_roles(
 );
 
 
-/*DROP TABLE IF EXISTS authorities;
-CREATE TABLE IF NOT EXISTS authorities(
-	username VARCHAR(50) NOT NULL,
-    authority VARCHAR(50) NOT NULL,
-    
-    UNIQUE KEY `authorities_idx_1` (`username`, `authority`),    
-    CONSTRAINT  `authorities_ibfk_1` FOREIGN KEY (username) REFERENCES users(username)
-);
-
-INSERT INTO authorities VALUES
-('dzenan.dzafic', 'ROLE_EMPLOYEE');
-*/
-
-
+INSERT INTO users_roles VALUES
+(1, 1),
+(1, 2);

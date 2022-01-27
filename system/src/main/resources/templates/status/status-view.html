@@ -115,7 +115,7 @@
             <tbody>
                 <tr th:each="data:${ modelData }" >
                     <td th:text="${ data.id }"></td>
-                    <td th:text="${ data.ticket.id } + ': '+ ${ data.ticket.firstName } + ' ' + ${ data.ticket.firstName } + ' - ' +  ${ data.ticket.registrationNumber }"></td>
+                    <td th:text="${ data.ticket.id } + ': '+ ${ data.ticket.firstName } + ' ' + ${ data.ticket.lastName } + ' - ' +  ${ data.ticket.registrationNumber }"></td>
                     <td th:text="${ data.status }"></td>
                     <td th:text="${ data.description }"></td>
                     <td th:text="${ data.cost }"></td>
