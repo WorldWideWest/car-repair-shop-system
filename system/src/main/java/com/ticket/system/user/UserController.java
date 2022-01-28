@@ -81,7 +81,7 @@ public class UserController {
         
         User user = userService.findById(id);
         userService.delete(user);
-        return "redirect:/list";
+        return "redirect:/user/list";
 
     }
 

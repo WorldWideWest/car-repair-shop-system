@@ -40,7 +40,7 @@ CREATE TABLE IF NOT EXISTS users(
 
 
 INSERT INTO users VALUES
-(1, 'Oliver', 'Twist', 'oli.t', '$2a$10$eyl1t1zgeiNL3VR5U87d/uK5ZRl4wpPwcfskaFm5GZ8TpUVB0V9hG');
+(1, 'Oliver', 'Twist', 'oli.t', '$2a$10$eyl1t1zgeiNL3VR5U87d/uK5ZRl4wpPwcfskaFm5GZ8TpUVB0V9hG'); -- password:eminem662
 
 DROP TABLE IF EXISTS roles;
 CREATE TABLE IF NOT EXISTS roles(

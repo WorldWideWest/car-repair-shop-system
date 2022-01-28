@@ -1,7 +1,5 @@
 package com.ticket.system.home;
 
-import java.util.Optional;
-
 import com.ticket.system.status.Status;
 import com.ticket.system.status.StatusService;
 import com.ticket.system.ticket.Ticket;
@@ -32,15 +30,17 @@ public class HomeController {
     @GetMapping("/search")
     public String searchView(@RequestParam("ticketId") int id, Model model ){
 
-        Ticket ticket = ticketService.findById(id);
-        if(ticket != null){
+        Ticket ticket = null;
+        try{
+            ticket = ticketService.findById(id);
             model.addAttribute("data", ticket);
-
+            
             Status status = statusService.findByTicket(ticket);
             model.addAttribute("status", status);
 
-        }else{
+        } catch (Exception e){
             model.addAttribute("error", "There is no registered ticket with the id: " + id);
+            return "home/home-view";
         }
 
         return "home/home-view";
@@ -50,5 +50,6 @@ public class HomeController {
     public String accessDeniedView(){
         return "home/access-denied";
     }
+
 
 }
