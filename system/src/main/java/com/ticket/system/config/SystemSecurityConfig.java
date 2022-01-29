@@ -50,9 +50,13 @@ public class SystemSecurityConfig extends WebSecurityConfigurerAdapter{
                 .antMatchers("/ticket/**").hasAuthority("EMPLOYEE")
                 .antMatchers("/user/**").hasAuthority("ADMIN")
             .and()
-                .formLogin().permitAll()
+                .formLogin()
+                    .loginPage("/login")
+                    .loginProcessingUrl("/login-process")
+                    .failureUrl("/login-error")
+                    .permitAll()
             .and()
-                .logout().permitAll()
+                .logout().permitAll().logoutSuccessUrl("/login")
             .and()
                 .exceptionHandling().accessDeniedPage("/access-denied");
 

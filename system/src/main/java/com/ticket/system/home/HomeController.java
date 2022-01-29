@@ -1,5 +1,6 @@
 package com.ticket.system.home;
 
+import com.fasterxml.jackson.annotation.JsonCreator.Mode;
 import com.ticket.system.status.Status;
 import com.ticket.system.status.StatusService;
 import com.ticket.system.ticket.Ticket;
@@ -46,10 +47,26 @@ public class HomeController {
         return "home/home-view";
     }
 
+    // Authentication view's
+    @GetMapping("/login")
+    public String login(){
+        return "auth/login";
+    }
+
+    @GetMapping("/login-error")
+    public String loginErrorView(Model model){
+        model.addAttribute("error", true);
+        return "auth/login";
+    }
+
+    @GetMapping("/logout-view")
+    public String logoutView(){
+        return "auth/logout";
+    }
+
     @GetMapping("/access-denied")
     public String accessDeniedView(){
         return "home/access-denied";
     }
-
 
 }
