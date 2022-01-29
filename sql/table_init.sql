@@ -27,7 +27,6 @@ CREATE TABLE IF NOT EXISTS `Status`(
 
 
 -- Tables for authentication
-USE car_repair;
 
 DROP TABLE IF EXISTS users;
 CREATE TABLE IF NOT EXISTS users(

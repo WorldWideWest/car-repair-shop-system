@@ -5,6 +5,7 @@ import com.ticket.system.status.StatusService;
 import com.ticket.system.ticket.Ticket;
 import com.ticket.system.ticket.TicketService;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +17,7 @@ public class HomeController {
     private StatusService statusService;
     private TicketService ticketService;
 
+    @Autowired
     public HomeController(StatusService statusService, TicketService ticketService){
         this.statusService = statusService;
         this.ticketService = ticketService;
