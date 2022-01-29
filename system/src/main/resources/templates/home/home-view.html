@@ -21,6 +21,7 @@
 
     <h1 style="text-align: center; padding: 30px;">Welcome to Car Repair Shop</h1>
     <form action="#" th:action="@{/search}">
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
         <input type="text" placeholder="Enter ticket number" th:name="ticketId" class="form-control">
         <input type="submit" value="Search" class="btn btn-outline-dark btn-lg">
     </form>
