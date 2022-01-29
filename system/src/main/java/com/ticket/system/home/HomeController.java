@@ -28,11 +28,19 @@ public class HomeController {
 
     
     @GetMapping("/search")
-    public String searchView(@RequestParam("ticketId") int id, Model model ){
+    public String searchView(@RequestParam("ticketId") String id, Model model ){
+
+        int parsedId;
+        try{
+            parsedId = Integer.parseInt(id.toString());
+        } catch (Exception e){
+            model.addAttribute("error", "Ticket must contain only numbers, your ticket containes: " + id);
+            return "home/home-view";
+        }
 
         Ticket ticket = null;
         try{
-            ticket = ticketService.findById(id);
+            ticket = ticketService.findById(parsedId);
             model.addAttribute("data", ticket);
             
             Status status = statusService.findByTicket(ticket);
