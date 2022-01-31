@@ -31,14 +31,14 @@ To run the app will need to setup SQL & our application.properties file in the S
 
 ### DB Setup
 To setup the database load the file: 
-`./sql/table_init.sql`, once you loaded the file into your prefered SQL editor execute it. To understand the script better will go through it here:
+`./sql/table_init.sql`, once you loaded the file into your preffered SQL editor execute it. To understand the script better will go through it here:
 
 ```sql
 DROP DATABASE IF EXISTS car_repair;
 CREATE DATABASE IF NOT EXISTS car_repair;
 ```
 
-In these first lines we drop the database if it exists and creating the same database. This is done when we want to start all over again and don't want the preavious database to interfire with our new database.
+In these first lines we drop the database if it exists and creating the same database. This is done when we want to start all over again and don't want the previous database to interfere with our new database.
 
 Then we go to use the created database with the command:
 
@@ -46,7 +46,7 @@ Then we go to use the created database with the command:
 USE car_repair;
 ```
 
-This is a really important step because if we don't use the created database will get an error because no database was selected and therefor we can't create the desired tables that we need to store data from our spring app.
+This is a really important step because if we don't use the created database will get an error because no database was selected and therefore we can't create the desired tables that we need to store data from our spring app.
 
 The next step is to create the tables:
 
@@ -59,10 +59,10 @@ CREATE TABLE IF NOT EXISTS Ticket(
 
 With the structure of the first table in place we move to create the second table that will reference the first table, and that is the only structural difference between the two.
 
-The Status table contains the field ticket that references as a foreign key the Ticket table, and has a ON DELETE CASCADE constraint, that means if the record that is referenced deleted go ahead and delete all enteries that reference that record.
+The Status table contains the field ticket that references as a foreign key the Ticket table, and has a ON DELETE CASCADE constraint, that means if the record that is referenced deleted go ahead and delete all entries that reference that record.
 
 
-The reason why `Status` contains backticks is because it is a SQL keyword and by adding backticks we converte it to normal string.
+The reason why `Status` contains backticks is because it is a SQL keyword and by adding backticks we converted it to normal string.
 ```sql
 DROP TABLE IF EXISTS `Status`;
 CREATE TABLE IF NOT EXISTS `Status`(
@@ -72,11 +72,11 @@ CREATE TABLE IF NOT EXISTS `Status`(
 )
 ```
 
-Then we come to the part of Authentication & Authorization tables which have a ManyToMany relationship. This is because in the app we want to diferentiate users as ADMIN's and EMPLOYEE's and the EMPLOYEE's can't have access to certan parts of the app.
+Then we come to the part of Authentication & Authorization tables which have a ManyToMany relationship. This is because in the app we want to differentiate users as ADMIN's and EMPLOYEE's and the EMPLOYEE's can't have access to certain parts of the app.
 
-The `users` table contain basic information about the user but the key thing here is the username field which has to be unique, and it has that constrint, so we can authenticate each user individualy and there will be no users with the same username. But this really depends on you and what you want to store in the Table for the user, you could also use the email. But if you want to know more about it consult the Spring Security documentation where all of this is fearmly explained.
+The `users` table contain basic information about the user but the key thing here is the username field which has to be unique, and it has that constraint, so we can authenticate each user individually and there will be no users with the same username. But this really depends on you and what you want to store in the Table for the user, you could also use the email. But if you want to know more about it consult the Spring Security documentation where all of this is firmly explained.
 
-The password field is also ommited into backticks because of the keyword issue. The password is stored as an hashed string of characters and is hashed in our spring app and passed to the database and saved. For the hashing I used the BCrypt Algorithm.
+The password field is also omitted into backticks because of the keyword issue. The password is stored as a hashed string of characters and is hashed in our spring app and passed to the database and saved. For the hashing I used the BCrypt Algorithm.
 
 ```sql
 DROP TABLE IF EXISTS users;
@@ -86,14 +86,14 @@ CREATE TABLE IF NOT EXISTS users(
     `password` VARCHAR(64) NOT NULL
 )
 ```
-Once the table was created I inserted the value of the first user. The user is Oliver Twist with the id of oli.t and a hashed password which is eminem662
+Once the table was created I inserted the value of the first user. The user is Oliver Twist with the username of oli.t and a hashed password which is eminem662
 
 ```sql
 INSERT INTO users VALUES
 (1, 'Oliver', 'Twist', 'oli.t', '$2a$10$eyl1t1zgeiNL3VR5U87d/uK5ZRl4wpPwcfskaFm5GZ8TpUVB0V9hG'); -- password:eminem662
 ```
 
-Then we have the roles table which we will use for authorization for each user. This table isn't special, the only thing we added here is that the name need's to be a UNIQUE.
+Then we have the roles table which we will use for authorization for each user. This table isn't special, the only thing we added here is that the name needs to be a UNIQUE.
 
 ```sql
 DROP TABLE IF EXISTS roles;
@@ -136,9 +136,9 @@ And with this our SQL setup is done.
 
 ### Application setup
 
-For application setup we have to update the application.properties file whicih is in `system\src\main\resources\application.properties`.
+For application setup we have to update the application.properties file which is in `system\src\main\resources\application.properties`.
 
-Once you open the file you will have few enteries:
+Once you open the file you will have few entries:
 ```properties
 spring.datasource.url=jdbc:mysql://127.0.0.1:3306/car_repair?useSSL=false&serverTimezone=UTC
 spring.datasource.username=username
@@ -167,11 +167,11 @@ When the customer comes to the repair shop he gives his information to the worke
 
 ### Tracking
 
-Once the car has reached the phase where it is ready for repair the worker has access to the created ticket and then can update the status of the ticket as fixed or not fixed. Also in this phase he adds the description on what repair was done on the car and adds the cost. This form also has builtin validation.
+Once the car has reached the phase where it is ready for repair the worker has access to the created ticket and then can update the status of the ticket as fixed or not fixed. Also in this phase he adds the description on what repair was done on the car and adds the cost. This form also has built in validation.
 
 ### Authentication and Authorization
 
-We talked about this part in the DB Setup phase, but the for the authentication we use our custom register, login & logout forms. And the authorization enables us to restrict EMPLOYEES to have access to the views and pages thta ADMINS have, same stands for the ADMINS.
+We talked about this part in the DB Setup phase, but the for the authentication we use our custom register, login & logout forms. And the authorization enables us to restrict EMPLOYEES to have access to the views and pages that ADMINS have, same stands for the ADMINS.
 
 ### Home
 
